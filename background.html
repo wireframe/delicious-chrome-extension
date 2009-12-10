@@ -3,6 +3,10 @@
     <script type="text/javascript" src="jquery.min.js"></script>
     <script type="text/javascript" src="delicious.js"></script>
     <script type="text/javascript">
+      //hack to register listener.
+      //see http://code.google.com/p/chromium/issues/detail?id=28136
+      chrome.bookmarks.search("foobar", function(results) { });
+      
       /*
       intercept user creating chrome bookmark
       http://code.google.com/chrome/extensions/bookmarks.html
