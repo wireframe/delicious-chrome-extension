@@ -1,4 +1,5 @@
 chrome.bookmarks.onCreated.addListener(function(id, BookmarkTreeNode bookmark) {
+  alert('here');
   if (bookmark.url) {
     var data = {
       url: bookmark.url,

@@ -2,7 +2,8 @@
   "content_scripts": [
     {
       "js": [
-        "delicious-chrome.js"
+        "jquery.min.js",
+        "delicious-content.js"
       ], 
       "matches": [
         "http://*/*"
