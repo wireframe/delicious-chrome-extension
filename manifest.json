@@ -1,6 +1,9 @@
 {
   "content_scripts": [
     {
+      "js": [
+        "delicious-chrome.js"
+      ], 
       "matches": [
         "http://*/*"
       ]
