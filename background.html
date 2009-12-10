@@ -5,7 +5,7 @@
     <script type="text/javascript">
       //hack to register listener.
       //see http://code.google.com/p/chromium/issues/detail?id=28136
-      chrome.bookmarks.search("foobar", function(results) { });
+      chrome.bookmarks.get("0", function() {});
       
       /*
       intercept user creating chrome bookmark
