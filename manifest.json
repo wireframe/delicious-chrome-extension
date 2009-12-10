@@ -18,8 +18,8 @@
     "bookmarks"
   ],
   "browser_action": {
-      "default_title": "Delicious",
-      "default_icon": "delicious.png",
-      "popup": "popup.html"
+    "default_title": "Delicious",
+    "default_icon": "delicious.png",
+    "popup": "popup.html"
   }
 }
