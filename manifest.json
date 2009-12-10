@@ -1,0 +1,21 @@
+{
+  "content_scripts": [
+    {
+      "matches": [
+        "http://*/*"
+      ]
+    }
+  ], 
+  "name": "Delicious",
+  "version": "0.1",
+  "description": "Delicious Bookmarks",
+  "permissions": [
+    "tabs",
+    "bookmarks"
+  ],
+  "browser_action": {
+      "default_title": "Delicious",
+      "default_icon": "delicious.png",
+      "popup": "popup.html"
+  }
+}
