@@ -4,7 +4,8 @@
   "description": "Delicious Bookmarks",
   "permissions": [
     "tabs",
-    "bookmarks"
+    "bookmarks",
+    "https://api.del.icio.us/"
   ],
   "browser_action": {
     "default_title": "Delicious",

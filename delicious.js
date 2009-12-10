@@ -1,4 +1,7 @@
-var delicious = {};
+var delicious;
+if (!delicious) {
+  delicious = {};
+}
 
 /*
 post new bookmark to delicious
