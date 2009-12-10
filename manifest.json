@@ -1,15 +1,4 @@
 {
-  "content_scripts": [
-    {
-      "js": [
-        "jquery.min.js",
-        "delicious-content.js"
-      ], 
-      "matches": [
-        "http://*/*"
-      ]
-    }
-  ], 
   "name": "Delicious",
   "version": "0.1",
   "description": "Delicious Bookmarks",
@@ -21,5 +10,6 @@
     "default_title": "Delicious",
     "default_icon": "delicious.png",
     "popup": "popup.html"
-  }
+  },
+  "background_page": "background.html"
 }

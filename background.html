@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="delicious.js"></script>
+    <script type="text/javascript">
+      /*
+      intercept user creating chrome bookmark
+      http://code.google.com/chrome/extensions/bookmarks.html
+      */
+      chrome.bookmarks.onCreated.addListener(function(id, bookmark) {
+        if (bookmark.url) {
+          var data = {
+            url: bookmark.url,
+            description: bookmark.title
+          };
+
+          delicious.saveBookmark(data);
+        }
+      });
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
