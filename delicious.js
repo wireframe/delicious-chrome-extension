@@ -9,7 +9,7 @@ see http://gist.github.com/7516
 */
 delicious.saveBookmark = function(params, options) {
   var defaults = {
-    type: "POST",
+    type: "GET",
     dataType: "xml",
     url: "https://api.del.icio.us/v1/posts/add",
     data: params,
