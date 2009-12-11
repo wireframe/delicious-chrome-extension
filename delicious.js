@@ -11,7 +11,7 @@ delicious.saveBookmark = function(params, options) {
   var defaults = {
     type: "GET",
     dataType: "xml",
-    url: "https://api.del.icio.us/v1/posts/add",
+    url: "https://api.delicious.com/v1/posts/add",
     data: params,
     error: function() {
       console.error("Error saving bookmark to delicious");
@@ -27,5 +27,6 @@ delicious.saveBookmark = function(params, options) {
       }
     }
   };
-  $.ajax($.extend({}, defaults, options));
+  options = $.extend({}, defaults, options);
+  $.ajax(options);
 };

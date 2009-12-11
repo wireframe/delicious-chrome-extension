@@ -1,13 +1,11 @@
 {
   "name": "Delicious",
-  "version": "0.1",
+  "version": "0.1.1",
   "description": "Delicious Bookmarks",
   "permissions": [
     "tabs",
     "bookmarks",
-    "https://api.del.icio.us/",
-    "http://*/",
-    "https://*/"
+    "https://api.delicious.com/"
   ],
   "browser_action": {
     "default_title": "Delicious",
