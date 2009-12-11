@@ -1,26 +1,42 @@
 <html>
   <head>
     <script type="text/javascript" src="jquery.min.js"></script>
-    <script type="text/javascript" src="delicious.js"></script>
     <script type="text/javascript">
-      //hack to register listener.
-      //see http://code.google.com/p/chromium/issues/detail?id=28136
-      chrome.bookmarks.get("0", function() {});
-      
-      /*
-      intercept user creating chrome bookmark
-      http://code.google.com/chrome/extensions/bookmarks.html
-      */
-      chrome.bookmarks.onCreated.addListener(function(id, bookmark) {
-        if (bookmark.url) {
-          var data = {
-            url: bookmark.url,
-            description: bookmark.title
-          };
+      var delicious;
+      if (!delicious) {
+        delicious = {};
+      }
 
-          delicious.saveBookmark(data);
-        }
-      });
+      /*
+      post new bookmark to delicious
+      see http://gist.github.com/7516
+      */
+      delicious.saveBookmark = function(params, options) {
+        var defaults = {
+          type: "GET",
+          dataType: "xml",
+          url: "https://api.del.icio.us/v1/posts/add",
+          data: params,
+          error: function(request, status) {
+            console.error("Error saving bookmark to delicious: " + status);
+          },
+          success: function(xml) {
+            var result = $(xml).find("result");
+            var code = result.attr("code");
+
+            if (code == "done") {
+              console.log("Bookmark saved to delicious!");
+            } else {
+              console.error("Error saving bookmark to delicious: " + code);
+            }
+          }
+        };
+        options = $.extend({}, defaults, options);
+        $.ajax(options);
+      };
+
+      //trigger script on load
+      delicious.saveBookmark({url: 'http://google.com', description: 'google'});
     </script>
   </head>
   <body>

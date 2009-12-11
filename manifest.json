@@ -5,12 +5,7 @@
   "permissions": [
     "tabs",
     "bookmarks",
-    "https://api.delicious.com/"
+    "https://api.del.icio.us/"
   ],
-  "browser_action": {
-    "default_title": "Delicious",
-    "default_icon": "delicious.png",
-    "popup": "popup.html"
-  },
   "background_page": "background.html"
 }
