@@ -13,8 +13,8 @@ delicious.saveBookmark = function(params, options) {
     dataType: "xml",
     url: "https://api.delicious.com/v1/posts/add",
     data: params,
-    error: function() {
-      console.error("Error saving bookmark to delicious");
+    error: function(request, status) {
+      console.error("Error saving bookmark to delicious: " + status);
     },
     success: function(xml) {
       var result = $(xml).find("result");
