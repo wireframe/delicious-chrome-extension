@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="delicious.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        chrome.tabs.getSelected( null , function(tab) {
+          $('#url').val(tab.url);
+          $('#description').val(tab.title);
+       	});
+       	
+        $("#form").submit(function() {
+          delicious.saveBookmark(this.serialize());
+          window.close();
+          return false;
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <form id="form">
+      <input type="hidden" id="url" />
+      <input type="text" id="description" placeholder="title" name="description" />
+      <input type="text" placeholder="tags" name="tags" />
+      <textarea placeholder="notes" name="extended"></textarea>
+      <button type="submit">Save</button>
+    </form>
+  </body>
+</html>

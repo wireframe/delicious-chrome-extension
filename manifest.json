@@ -1,6 +1,6 @@
 {
   "name": "Delicious",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Delicious Bookmarks",
   "permissions": [
     "tabs",
@@ -8,5 +8,10 @@
     "https://api.del.icio.us/"
   ],
   "background_page": "background.html",
-  "options_page": "options.html"
+  "options_page": "options.html",
+  "page_action": {
+    "default_icon": "delicious.png",
+    "default_title": "Post Delicious Bookmark",
+    "popup": "popup.html"
+  }
 }

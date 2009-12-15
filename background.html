@@ -5,9 +5,10 @@
     <script type="text/javascript">
       //hack to register bookmark listener
       chrome.bookmarks.get('0', function() {});
-      function bookmarkFoldersAsTags(bookmark, tags) {
+      function bookmarkFoldersAsTags(bookmark) {
         var tags = [];
         
+        //TODO: walk heirarchy of folders
         // var mark = bookmark;
         // while (mark.parentId) {
         //   chrome.bookmarks.get(mark.parentId, function(results) {
