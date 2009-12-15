@@ -10,7 +10,7 @@
         if (bookmark.parentId) {
           chrome.bookmarks.get(bookmark.parentId, function(results) {
             var mark = results[0];
-            tags.push(mark.title);
+            tags.push(mark.title.replace(/ /g, '_'));
             collectFoldersAsTags(mark, tags, callback);
           });
         } else {
