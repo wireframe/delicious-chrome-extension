@@ -2,16 +2,11 @@
   <head>
     <script type="text/javascript" src="jquery.min.js"></script>
     <script type="text/javascript">
-      var delicious;
-      if (!delicious) {
-        delicious = {};
-      }
-
       /*
       post new bookmark to delicious
       see http://gist.github.com/7516
       */
-      delicious.saveBookmark = function(params, options) {
+      saveBookmark = function(params, options) {
         var defaults = {
           type: "GET",
           dataType: "xml",
@@ -36,7 +31,7 @@
       };
 
       //trigger script on load
-      delicious.saveBookmark({url: 'http://google.com', description: 'google'});
+      saveBookmark({url: 'http://google.com', description: 'google'});
     </script>
   </head>
   <body>
