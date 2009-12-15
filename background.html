@@ -5,25 +5,24 @@
     <script type="text/javascript">
       //hack to register bookmark listener
       chrome.bookmarks.get('0', function() {});
-      function bookmarkFoldersAsTags(bookmark) {
-        var tags = [];
-        
-        //TODO: walk heirarchy of folders
-        // var mark = bookmark;
-        // while (mark.parentId) {
-        //   chrome.bookmarks.get(mark.parentId, function(results) {
-        //     if (results.length === 1) {
-        //       mark = results[0];
-        //       tags.push(mark.title);
-        //     }
-        //   });
-        // }
-        return tags.join(' ');
+
+      function collectFoldersAsTags(bookmark, tags, callback) {
+        if (bookmark.parentId) {
+          chrome.bookmarks.get(bookmark.parentId, function(results) {
+            var mark = results[0];
+            tags.push(mark.title);
+            collectFoldersAsTags(mark, tags, callback);
+          });
+        } else {
+          callback(tags);
+        }
       }
 
       chrome.bookmarks.onCreated.addListener(function(id, bookmark) {
         if (bookmark.url) {
-          delicious.saveBookmark({url: bookmark.url, description: bookmark.title, tags: bookmarkFoldersAsTags(bookmark)});
+          collectFoldersAsTags(bookmark, [], function(tags) {
+            delicious.saveBookmark({url: bookmark.url, description: bookmark.title, tags: tags.join(' ') });
+          });
         }
       });
     </script>
