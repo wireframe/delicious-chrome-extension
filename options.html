@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        $('#username').val(localStorage['username']);
+        $("#form").submit(function() {
+          localStorage['username'] = $('#username').val();
+          localStorage['password'] = $('#password').val();
+          window.close();
+          return false;
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <form id="form">
+      <input type="text" placeholder="username" id="username"/>
+      <input type="password" placeholder="password" id="password"/>
+      <button type="submit">Save</button>
+    </form>
+  </body>
+</html>

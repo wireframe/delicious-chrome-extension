@@ -12,6 +12,10 @@
           dataType: "xml",
           url: "https://api.del.icio.us/v1/posts/add",
           data: params,
+          beforeSend: function(request) {
+            var auth = 'Basic ' + btoa(localStorage['username'] + ':' + localStorage['password']);
+            request.setRequestHeader('Authorization', auth);
+          },
           error: function(request, status) {
             console.error("Error saving bookmark to delicious: " + status);
           },
@@ -29,9 +33,6 @@
         options = $.extend({}, defaults, options);
         $.ajax(options);
       }
-
-      //trigger script on load
-      saveBookmark({url: 'http://google.com', description: 'google'});
     </script>
   </head>
   <body>
