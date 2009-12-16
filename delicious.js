@@ -52,7 +52,7 @@ remove an existing bookmark from delicious
 see http://delicious.com/help/api#posts_delete
 */
 delicious.removeBookmark = function(url) {
-  var defaults = {
+  var opts = {
     url: "https://api.del.icio.us/v1/posts/add",
     data: {url: url},
     success: function(xml) {
@@ -66,6 +66,26 @@ delicious.removeBookmark = function(url) {
       }
     }
   };
-  var opts = $.extend({}, defaults, options);
   delicious.request(opts);
+};
+
+/*
+recommends tags for a given url
+see http://delicious.com/help/api#posts_delete
+*/
+delicious.suggestions = function(url) {
+  var suggestions = [];
+  var opts = {
+    url: "https://api.del.icio.us/v1/posts/suggest",
+    data: {url: url},
+    async: false,
+    success: function(xml) {
+      $(xml).find("popular,recommended").map(function() {
+        suggestions.push($(this).text());
+      });
+    }
+  };
+  delicious.request(opts);
+
+  return suggestions;
 };

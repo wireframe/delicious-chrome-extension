@@ -4,11 +4,14 @@
     <script type="text/javascript" src="delicious.js"></script>
     <script type="text/javascript">
       $(function() {
-        chrome.tabs.getSelected( null , function(tab) {
+        chrome.tabs.getSelected(null , function(tab) {
           $('#url').val(tab.url);
           $('#description').val(tab.title);
+
+         	$.each(delicious.suggestions(tab.url), function() {
+         	  $("<li />").text(this).appendTo($('#suggestions'));
+         	});
        	});
-       	
         $("#form").submit(function() {
           delicious.saveBookmark(this.serialize());
           window.close();
@@ -22,6 +25,8 @@
       <input type="hidden" id="url" />
       <input type="text" id="description" placeholder="title" name="description" />
       <input type="text" placeholder="tags" name="tags" />
+      <ul id="suggestions">
+      </ul>
       <textarea placeholder="notes" name="extended"></textarea>
       <button type="submit">Save</button>
     </form>
