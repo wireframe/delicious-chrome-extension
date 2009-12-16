@@ -26,7 +26,7 @@
           });
        	});
         $("#form").submit(function() {
-          delicious.saveBookmark(this.serialize());
+          delicious.saveBookmark($(this).serialize());
           window.close();
           return false;
         });
