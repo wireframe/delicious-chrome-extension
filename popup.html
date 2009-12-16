@@ -26,8 +26,9 @@
           });
        	});
         $("#form").submit(function() {
-          delicious.saveBookmark($(this).serialize());
-          window.close();
+          delicious.saveBookmark($(this).serialize(), {complete: function() {
+            window.close();
+          }});
           return false;
         });
       });
@@ -63,7 +64,7 @@
   </head>
   <body>
     <form id="form">
-      <input type="hidden" id="url" />
+      <input type="hidden" id="url" name="url"/>
       <input type="text" id="description" placeholder="title" name="description" />
       <input type="text" placeholder="tags" name="tags" id="tags" />
       <textarea placeholder="notes" name="extended"></textarea>
