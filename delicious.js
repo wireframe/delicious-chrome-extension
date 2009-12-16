@@ -73,19 +73,27 @@ delicious.removeBookmark = function(url) {
 recommends tags for a given url
 see http://delicious.com/help/api#posts_delete
 */
-delicious.suggestions = function(url) {
-  var suggestions = [];
+delicious.suggestions = function(url, callback) {
   var opts = {
     url: "https://api.del.icio.us/v1/posts/suggest",
     data: {url: url},
-    async: false,
     success: function(xml) {
+      var suggestions = [];
       $(xml).find("popular,recommended").map(function() {
         suggestions.push($(this).text());
       });
+      callback(suggestions.unique());
     }
   };
   delicious.request(opts);
+};
 
-  return suggestions;
+// Array.unique( strict ) - Remove duplicate values
+//see http://4umi.com/web/javascript/array.php#unique
+Array.prototype.unique = function(b) {
+ var a = [], i, l = this.length;
+ for( i=0; i<l; i++ ) {
+  if( a.indexOf( this[i], 0, b ) < 0 ) { a.push( this[i] ); }
+ }
+ return a;
 };
