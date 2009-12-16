@@ -11,11 +11,13 @@
           delicious.suggestions(tab.url, function(suggestions) {
          	  var list = $('#suggestions');
            	$.each(suggestions, function() {
-              $("<a href='#' />").text(this.toString()).appendTo(list).wrap('<li />').click(function() {
+           	  var element = $('<li />').appendTo(list);
+              $("<a href='#' />").text(this.toString()).appendTo(element).wrap('<li />').click(function() {
                 var tags = $('#tags');
                 tags.val(tags.val() + $(this).text() + ' ');
                 return false;
               });
+              element.append(' ');
            	});
           });
        	});
@@ -27,13 +29,30 @@
       });
     </script>
     <style>
+      input {
+        width: 200px;
+      }
+      textarea {
+        width: 200px;
+        height: 30px;
+      }
+      h2 {
+        font-size: 14px;
+      }
+      #suggestions {
+        margin: 0;
+        padding: 0;
+        width: 200px;
+      }
       #suggestions li {
         display: inline;
         list-style-type: none;
-        padding-right: 5px;
+        margin: 0;
+        padding: 0;
+        margin-right: 2px;
+        font-size: 12px;
       }
       #suggestions a {
-        font-size: 12px;
         color: #444;
       }
     </style>
@@ -43,10 +62,11 @@
       <input type="hidden" id="url" />
       <input type="text" id="description" placeholder="title" name="description" />
       <input type="text" placeholder="tags" name="tags" id="tags" />
-      <ul id="suggestions">
-      </ul>
       <textarea placeholder="notes" name="extended"></textarea>
       <button type="submit">Save</button>
+      <h2>Suggested Tags:</h2>
+      <ul id="suggestions">
+      </ul>
     </form>
   </body>
 </html>
