@@ -18,6 +18,9 @@
         }
       }
 
+      /*
+      see http://code.google.com/chrome/extensions/bookmarks.html#event-onCreated
+      */
       chrome.bookmarks.onCreated.addListener(function(id, bookmark) {
         if (bookmark.url) {
           collectFoldersAsTags(bookmark, [], function(tags) {
@@ -25,6 +28,29 @@
           });
         }
       });
+
+      /*
+      see http://code.google.com/chrome/extensions/bookmarks.html#event-onRemoved
+      */
+      chrome.bookmarks.onRemoved.addListener(function(id, removal) {
+        chrome.bookmarks.get(id, function(results) {
+          var bookmark = results[0];
+          if (bookmark.url) {
+            delicious.removeBookmark(bookmark.url);
+          }
+        });
+      });
+      
+      // chrome.bookmarks.onChanged.addListener(function(id, change) {
+      //   chrome.bookmarks.get(change.id, function(results) {
+      //     var bookmark = results[0];
+      //     if (bookmark.url) {
+      //       collectFoldersAsTags(bookmark, [], function(tags) {
+      //         delicious.saveBookmark({url: bookmark.url, description: bookmark.title, tags: tags.join(' ') });
+      //       });
+      //     }
+      //   });
+      // });
     </script>
   </head>
   <body>
