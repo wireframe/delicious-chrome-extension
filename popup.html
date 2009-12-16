@@ -4,12 +4,16 @@
     <script type="text/javascript" src="delicious.js"></script>
     <script type="text/javascript">
       $(function() {
-        chrome.tabs.getSelected(null , function(tab) {
+        chrome.tabs.getSelected(null, function(tab) {
           $('#url').val(tab.url);
           $('#description').val(tab.title);
 
           delicious.suggestions(tab.url, function(suggestions) {
-         	  var list = $('#suggestions');
+            if (suggestions.length === 0) {
+              return;
+            }
+         	  var list = $('#suggestions').show();
+         	  $("#suggestions_header").show();
            	$.each(suggestions, function() {
            	  var element = $('<li />').appendTo(list);
               $("<a href='#' />").text(this.toString()).appendTo(element).wrap('<li />').click(function() {
@@ -64,8 +68,8 @@
       <input type="text" placeholder="tags" name="tags" id="tags" />
       <textarea placeholder="notes" name="extended"></textarea>
       <button type="submit">Save</button>
-      <h2>Suggested Tags:</h2>
-      <ul id="suggestions">
+      <h2 style="display: none" id="suggestions_header">Suggested Tags:</h2>
+      <ul id="suggestions" style="display: none">
       </ul>
     </form>
   </body>
