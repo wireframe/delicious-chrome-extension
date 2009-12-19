@@ -11,10 +11,8 @@ delicious.request = function(options) {
   var defaults = {
     type: "GET",
     dataType: "xml",
-    beforeSend: function(request) {
-      var auth = 'Basic ' + btoa(localStorage['username'] + ':' + localStorage['password']);
-      request.setRequestHeader('Authorization', auth);
-    },
+    username: localStorage['username'],
+    password: localStorage['password'],
     error: function(request, status) {
       console.error("Error connecting to delicious: " + status);
     }
