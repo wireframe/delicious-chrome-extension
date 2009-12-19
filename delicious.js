@@ -68,6 +68,19 @@ delicious.removeBookmark = function(url) {
 };
 
 /*
+verify that auth credentials are correct
+uses the delicious 'update' api to verify credentials
+see http://delicious.com/help/api#posts_update
+*/
+delicious.authorize = function(options) {
+  var defaults = {
+    url: "https://api.del.icio.us/v1/posts/update"
+  };
+  var opts = $.extend({}, defaults, options);
+  delicious.request(opts);
+};
+
+/*
 recommends tags for a given url
 see http://delicious.com/help/api#posts_delete
 */
