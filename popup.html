@@ -26,9 +26,14 @@
           });
        	});
         $("#form").submit(function() {
-          delicious.saveBookmark($(this).serialize(), {complete: function() {
-            window.close();
-          }});
+          delicious.saveBookmark($(this).serialize(), {
+            beforeSend: function() {
+              $('#submit').attr('disabled', 'disabled').text('Saving...');
+            },
+            complete: function() {
+              window.close();
+            }
+          });
           return false;
         });
       });
@@ -74,7 +79,7 @@
       <input type="text" id="description" placeholder="title" name="description" />
       <input type="text" placeholder="tags" name="tags" id="tags" />
       <textarea placeholder="notes" name="extended"></textarea>
-      <button type="submit">Save</button>
+      <button type="submit" id='submit'>Save</button>
       <ul id="suggestions" style="display: none">
       </ul>
     </form>
