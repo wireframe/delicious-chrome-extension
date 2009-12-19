@@ -1,6 +1,6 @@
 /*
 api for interacting with delicious
-see see http://delicious.com/help/api
+see http://delicious.com/help/api
 */
 var delicious;
 if (!delicious) {
